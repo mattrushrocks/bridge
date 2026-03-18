@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --cg-bg: #050912;
+  --cg-bg-deep: #0a1220;
+  --cg-ink: #f4f8ff;
+  --cg-muted: #afbdd5;
+  --cg-line: rgba(148, 168, 204, 0.22);
+  --cg-glass: rgba(11, 18, 30, 0.82);
+  --cg-glass-strong: rgba(15, 23, 38, 0.92);
+  --cg-blue: #78a7ff;
+  --cg-indigo: #5c88ef;
+  --cg-green: #6fdaa7;
+  --cg-amber: #ffc468;
+  --cg-red: #ff827d;
+  --cg-disabled-bg: #334155;
+  --cg-disabled-text: #c9d4e5;
+  --cg-secondary-bg: rgba(30, 41, 59, 0.9);
+  --cg-secondary-hover: rgba(51, 65, 85, 0.96);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  color: var(--cg-ink);
+  background:
+    radial-gradient(circle at top left, rgba(120, 167, 255, 0.12), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(111, 218, 167, 0.1), transparent 28%),
+    linear-gradient(180deg, var(--cg-bg) 0%, var(--cg-bg-deep) 100%);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  min-height: 44px;
+}
+
+input,
+textarea,
+select {
+  min-height: 44px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(103, 135, 255, 0.3);
+}
+
+.pulse-critical {
+  animation: pulse-critical 1s ease-in-out infinite;
+}
+
+.glass-panel {
+  background: var(--cg-glass);
+  border: 1px solid var(--cg-line);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+}
+
+.glass-panel-strong {
+  background: var(--cg-glass-strong);
+  border: 1px solid rgba(148, 168, 204, 0.24);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+}
+
+.glass-chip {
+  background: rgba(15, 23, 38, 0.9);
+  border: 1px solid rgba(148, 168, 204, 0.2);
+  backdrop-filter: blur(16px);
+}
+
+.cg-btn-primary {
+  background: var(--cg-blue);
+  color: #06101f;
+  font-weight: 700;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.cg-btn-primary:hover {
+  background: #95bbff;
+}
+
+.cg-btn-secondary {
+  background: var(--cg-secondary-bg);
+  color: var(--cg-ink);
+  border: 1px solid rgba(148, 168, 204, 0.22);
+  font-weight: 600;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.cg-btn-secondary:hover {
+  background: var(--cg-secondary-hover);
+  border-color: rgba(148, 168, 204, 0.32);
+}
+
+:focus-visible {
+  outline: 3px solid #ffd166;
+  outline-offset: 3px;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+  box-shadow: 0 0 0 4px rgba(255, 209, 102, 0.22);
+}
+
+button:disabled,
+.cg-btn-primary:disabled,
+.cg-btn-secondary:disabled {
+  background: var(--cg-disabled-bg);
+  color: var(--cg-disabled-text);
+  border-color: rgba(203, 213, 225, 0.18);
+  opacity: 1;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(120, 167, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 167, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.ambient-pulse {
+  position: relative;
+  overflow: hidden;
+}
+
+.ambient-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, rgba(103, 135, 255, 0.16) 0%, transparent 55%);
+  animation: ambient-drift 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-critical {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.86;
+  }
+}
+
+@keyframes ambient-drift {
+  0%,
+  100% {
+    transform: translate3d(-6%, -3%, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate3d(6%, 4%, 0) scale(1.08);
+    opacity: 0.95;
+  }
+}
